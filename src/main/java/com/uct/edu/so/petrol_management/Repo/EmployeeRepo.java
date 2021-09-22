@@ -18,7 +18,7 @@ public interface EmployeeRepo extends JpaRepository<EmployeeModel ,Integer> {
     //menues
     @Query(value = "SELECT * FROM `menue` \n" +
             "WHERE menue.id in (SELECT DISTINCT sumenue.menueId FROM `sumenue`\n" +
-            "INNER JOIN userprevilage on userprevilage.sub_menue_id=sumenue.id                   \n" +
+            "INNER JOIN userprevilage on userprevilage.sub_menue_id=sumenue.id \n" +
             "WHERE sumenue.id in (SELECT userprevilage.sub_menue_id FROM userprevilage WHERE userprevilage.emp_id=?1))",nativeQuery = true)
     List<Map<String,String>> menue(int id);
 
@@ -27,7 +27,7 @@ public interface EmployeeRepo extends JpaRepository<EmployeeModel ,Integer> {
 
     //
 
-    @Query(value = "SELECT DISTINCT sumenue.id,sumenue.text,sumenue.link,sumenue.menueId,sumenue.icon,userprevilage.emp_id FROM `sumenue`\n" +
+    @Query(value = "SELECT DISTINCT sumenue.id,sumenue.text,sumenue.link,sumenue.menueId,sumenue.icon,userprevilage.emp_id FROM sumenue\n" +
             "            INNER JOIN userprevilage on userprevilage.sub_menue_id=sumenue.id\n" +
             "            WHERE sumenue.id in (SELECT userprevilage.sub_menue_id FROM userprevilage) order by sumenue.menueId asc",nativeQuery = true)
     List<Map<String,String>> subMenue();
