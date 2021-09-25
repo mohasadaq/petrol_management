@@ -12,6 +12,6 @@ import java.util.Map;
 @Repository
 public interface ExpenseTypeRepo extends JpaRepository<ExpenseTypeModel , Integer> {
 
-    @Query(value = "SELECT * FROM `expense` WHERE `exp_type`=?",nativeQuery = true)
+    @Query(value = "SELECT * FROM expense WHERE exp_type=?",nativeQuery = true)
     List<Map<String,String>> checkIfExists(int expencetyId);
 }
