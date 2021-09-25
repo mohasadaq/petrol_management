@@ -11,6 +11,6 @@ public interface CompanyRepo extends JpaRepository<CompanyModel , Integer> {
 //    query
 @Transactional
 @Modifying
-@Query(value = "TRUNCATE TABLE `company_details`",nativeQuery = true)
+@Query(value = "TRUNCATE TABLE company_details",nativeQuery = true)
 void cmpDetail();
 }
