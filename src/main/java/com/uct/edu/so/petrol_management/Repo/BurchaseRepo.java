@@ -23,6 +23,6 @@ public interface BurchaseRepo extends JpaRepository<BurchaseModel, Integer> {
 //    fuel cost
 
 
-    @Query(value = "SELECT sum(`price_per_liter`*`quantity`)as cost FROM `purchase_petrol`",nativeQuery = true)
+    @Query(value = "SELECT sum(price_per_liter*quantity)as cost FROM purchase_petrol",nativeQuery = true)
     Double fuelCost();
 }
