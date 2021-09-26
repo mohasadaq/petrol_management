@@ -11,6 +11,6 @@ public interface UserPrevilageRepo extends CrudRepository<UserPrevilageModel,Int
     //delete userprevilage
     @Transactional
     @Modifying
-    @Query(value = "DELETE FROM `userprevilage` WHERE emp_id=?1",nativeQuery = true)
+    @Query(value = "DELETE FROM userprevilage WHERE emp_id=?1",nativeQuery = true)
     void deletesavePrivilage(int empId);
 }
