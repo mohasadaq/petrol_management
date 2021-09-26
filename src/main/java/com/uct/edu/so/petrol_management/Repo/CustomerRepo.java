@@ -11,13 +11,13 @@ import java.util.Map;
 
 public interface CustomerRepo extends JpaRepository<CustomerModel,Integer> {
 
-    @Query(value = "SELECT c_id, cname,ifnull(petroll_type.p_type,0)as p_type, ifnull(transection.trns_id,0)as trns_id,ifnull(round(((numofliter*priceper_liter)- transection.amountpaid),2),0) as amountRemaining,
-           IFnull(transection.numofliter*transection.priceper_liter,0)as totalAmount,ifnull(transection.amountpaid,0)as  amountpaid,ifnull(transection.numofliter,0) as numofliter,customer.begining_balance\n" +
-            "FROM customer LEFT JOIN transection ON transection.custmrid=customer.c_id\n" +
-            "LEFT JOIN petroll_type on petroll_type.pt_id=transection.petroltyid\n" +
-            "WHERE c_id IN (SELECT custmrid FROM transection WHERE amountpaid<\n" +
-            "(numofliter*priceper_liter)) AND transection.amountpaid< (numofliter*priceper_liter)\n" +
-            "OR customer.begining_balance>0",nativeQuery = true)
+    @Query(value = "SELECT c_id, cname,ifnull(petroll_type.p_type,0)as p_type, ifnull(transection.trns_id,0)as trns_id,ifnull(round(((numofliter*priceper_liter)- transection.amountpaid),2),0) as amountRemaining,\n" +
+            "    IFnull(transection.numofliter*transection.priceper_liter,0)as totalAmount,ifnull(transection.amountpaid,0)as  amountpaid,ifnull(transection.numofliter,0) as numofliter,customer.begining_balance\n" +
+            "            FROM customer LEFT JOIN transection ON transection.custmrid=customer.c_id\n" +
+            "            LEFT JOIN petroll_type on petroll_type.pt_id=transection.petroltyid\n" +
+            "            WHERE c_id IN (SELECT custmrid FROM transection WHERE amountpaid<\n" +
+            "            (numofliter*priceper_liter)) AND transection.amountpaid< (numofliter*priceper_liter)\n" +
+            "            OR customer.begining_balance>0",nativeQuery = true)
           List<Map<String,Integer>> customerInLoan ();
 
     // REGISTOR CUSTOMER STATEMENT
