@@ -10,17 +10,17 @@ import java.util.List;
 import java.util.Map;
 
 public interface PurchasePayments extends JpaRepository<PurchasePaymentsModel,Integer> {
-    @Query(value = "SELECT * FROM `purchase_payments` WHERE `paym_id`=?1",nativeQuery = true)
+    @Query(value = "SELECT * FROM purchase_payments WHERE paym_id=?1",nativeQuery = true)
     List<Map<String,String>> getPurchasePayments(int id);
 
 
     //delete transaction payments
     @Transactional
     @Modifying
-    @Query(value = "DELETE FROM `purchase_payments` WHERE `paym_id`=?1",nativeQuery = true)
+    @Query(value = "DELETE FROM purchase_payments WHERE paym_id=?1",nativeQuery = true)
     void deletePurchasePayments(int id);
 
-    @Query(value = "SELECT * FROM `purchase_payments` WHERE purchase_id=?1",nativeQuery = true)
+    @Query(value = "SELECT * FROM purchase_payments WHERE purchase_id=?1",nativeQuery = true)
     List<Map<String,String>> getPurchasedPayments(int purchaseId);
     //
 }
