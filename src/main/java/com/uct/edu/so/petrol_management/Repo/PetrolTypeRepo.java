@@ -10,6 +10,6 @@ import java.util.Map;
 public interface PetrolTypeRepo  extends JpaRepository<PetrolTypeModel,Integer> {
 //    SELECT * FROM `purchase_petrol` WHERE `potroltype_id` =?
 
-    @Query(value = "SELECT * FROM `purchase_petrol` WHERE `potroltype_id` =?",nativeQuery = true)
+    @Query(value = "SELECT * FROM purchase_petrol WHERE potroltype_id =?",nativeQuery = true)
     List<Map<String,String>> checkIfExists(int purchaseyId);
 }
