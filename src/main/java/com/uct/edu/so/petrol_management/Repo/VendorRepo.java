@@ -44,19 +44,19 @@ public interface VendorRepo extends JpaRepository<VendorModal,Integer> {
     // DELETE VENDOR STATEMENT
     @Transactional
     @Modifying
-    @Query(value = "DELETE FROM venderstatement WHERE dueTo=?1 and dueToId=?2",nativeQuery = true)
+    @Query(value = "DELETE FROM venderstatement WHERE dueto=?1 and duetoid=?2",nativeQuery = true)
     void deleteVendorStatement(String dueto,int id);
     //
 
     @Transactional
     @Modifying
-    @Query(value = "INSERT INTO venderstatement(vId, cashIn, cashOut, dueTo,dueToId) \n" +
+    @Query(value = "INSERT INTO venderstatement(v_id, cashIn, cashOut, dueto,duetoid) \n" +
             "    VALUES (?1,?2,?3,?4,?5 )",nativeQuery = true)
-    void vendorStatement(int id,double cashIn,double cashOut,String dueto,int dueToId);
+    void vendorStatement(int id,double cashIn,double cashOut,String dueto,int duetoid);
 
     //GET VENDER SATEMENT BY PURCHASE
-    @Query(value = "SELECT * FROM venderstatement WHERE dueTo=?1 and dueToId = ?2",nativeQuery = true)
-    List<Map<String,String>> getVendorStatement(String dueto, int dueToId);
+    @Query(value = "SELECT * FROM venderstatement WHERE dueto=?1 and duetoid = ?2",nativeQuery = true)
+    List<Map<String,String>> getVendorStatement(String dueto, int duetoid);
 
     @Query(value = "SELECT v_id, vendor.v_name,ifnull(petroll_type.p_type,0)as p_type, ifnull(purchase_petrol.pid,0)as pid,ifnull(round(((quantity*purchase_petrol.price_per_liter)- purchase_petrol.amount_paid),2),0) as amountRemaining,IFnull(purchase_petrol.quantity*purchase_petrol.price_per_liter,0)as totalAmount,ifnull(purchase_petrol.amount_paid,0)as  amountpaid,ifnull(purchase_petrol.quantity,0) as numofliter,vendor.v_begining_balance\n" +
             "FROM vendor LEFT JOIN purchase_petrol ON purchase_petrol.vnd_id=vendor.v_id\n" +
@@ -69,7 +69,7 @@ public interface VendorRepo extends JpaRepository<VendorModal,Integer> {
 
 
     //vendor that purchased from
-    @Query(value = "SELECT * FROM venderstatement WHERE vId=?1",nativeQuery = true)
+    @Query(value = "SELECT * FROM venderstatement WHERE v_id=?1",nativeQuery = true)
     List<Map<String,String>> getVendorWhoPurchasedFrom(int vendorId);
 
 
