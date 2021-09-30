@@ -38,7 +38,7 @@ public class VendorController {
         JSONArray jsonArray = new JSONArray(vendorStatement);
         if (jsonArray.length()<1){
             isDelateAble=true;
-//             vendorRepo.deleteById(id);
+            vendorRepo.deleteById(id);
         }
         return isDelateAble;
     }
