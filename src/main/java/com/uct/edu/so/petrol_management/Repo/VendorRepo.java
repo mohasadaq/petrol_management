@@ -50,9 +50,9 @@ public interface VendorRepo extends JpaRepository<VendorModal,Integer> {
 
     @Transactional
     @Modifying
-    @Query(value = "INSERT INTO venderstatement(v_id, cashIn, cashOut, dueto,duetoid) \n" +
+    @Query(value = "INSERT INTO venderstatement(v_id, cashin, cashout, dueto,duetoid) \n" +
             "    VALUES (?1,?2,?3,?4,?5 )",nativeQuery = true)
-    void vendorStatement(int id,double cashIn,double cashOut,String dueto,int duetoid);
+    void vendorStatement(int id,double cashin,double cashout,String dueto,int duetoid);
 
     //GET VENDER SATEMENT BY PURCHASE
     @Query(value = "SELECT * FROM venderstatement WHERE dueto=?1 and duetoid = ?2",nativeQuery = true)
