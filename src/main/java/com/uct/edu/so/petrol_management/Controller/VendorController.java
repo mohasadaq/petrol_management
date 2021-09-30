@@ -33,7 +33,7 @@ public class VendorController {
 
     @DeleteMapping("vendor/delete/{id}")
     public  boolean delete(@PathVariable int id){
-        boolean isDelateAble=true;
+        boolean isDelateAble=false;
         List<Map<String,String>> vendorStatement =  vendorRepo.getVendorWhoPurchasedFrom(id);
         JSONArray jsonArray = new JSONArray(vendorStatement);
         if (jsonArray.length()<1){
